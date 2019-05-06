@@ -22,8 +22,9 @@ public class MainActivity extends AppCompatActivity {
     Handler handler;
     TextView connect_status;
     TextView value;
-    TextView switch
+    TextView connect_switch;
     BluetoothDevice mmBluetoothDevice = null;
+    private static final String TAG = "MY_APP_DEBUG_TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         connect_status = findViewById(R.id.connect_status);
         value = findViewById(R.id.value);
+        connect_switch = findViewById(R.id.swtich);
 
         Boolean blt_supported = true;
 
@@ -94,8 +96,13 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void handleMessage(Message msg) {
-                    value.setText(msg.toString());
+                    Log.d(TAG, msg.toString());
+                    value.setText("" + msg.what);
                     connect_status.setText("Connected");
+                    if (msg.what == 0) {
+                        connect_switch.setText("ON");
+                    }
+
 
                 }
             };
