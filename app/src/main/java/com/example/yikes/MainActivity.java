@@ -17,6 +17,9 @@ import android.widget.Toast;
 import android.content.Context;
 import android.app.Application;
 
+//Program Arduino to send signal on pressure, then when the app receives the signal, it plays the default ringtone.
+
+
 
 import com.example.yikes.Bluetooth.MyBluetoothService;
 
