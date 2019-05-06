@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static android.content.ContentValues.TAG;
+
 
 public class MyBluetoothService {
     private static final String TAG = "MY_APP_DEBUG_TAG";
@@ -55,6 +57,7 @@ public class MyBluetoothService {
         }
 
         public void run() {
+            Log.i(TAG, "Runing run() of Bluetooth Service");
             mmBuffer = new byte[1024];
             int numBytes; // bytes returned from read()
 
@@ -106,5 +109,12 @@ public class MyBluetoothService {
                 Log.e(TAG, "Could not close the connect socket", e);
             }
         }
+    }
+
+    public void manageMyConnectedSocket(BluetoothSocket mmSocket) {
+        ConnectedThread mmConnectedThread = new ConnectedThread(mmSocket);
+        mmConnectedThread.run();
+
+
     }
 }

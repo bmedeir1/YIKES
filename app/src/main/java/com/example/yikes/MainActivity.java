@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.yikes.Bluetooth.ConnectThread;
+
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,24 +28,27 @@ public class MainActivity extends AppCompatActivity {
         }
 
         int REQUEST_ENABLE_BT = 1;
-        int attempts = 0;
-        while (blt_supported && REQUEST_ENABLE_BT != RESULT_OK && attempts < 5) {
+//        int attempts = 0;
+        while (blt_supported && REQUEST_ENABLE_BT != RESULT_OK) {
             if (!bluetoothAdapter.isEnabled()) {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
 
             }
-            ++attempts;
+//            ++attempts;
         }
 
-        if (attempts >= 5) {
-            System.out.println("Couldn't enable bluetooth");
-        }
+//        if (attempts >= 5) {
+//            System.out.println("Couldn't enable bluetooth");
+//        }
+
+        String deviceAddress;
+        BluetoothDevice blt_device = null;
 
         if (blt_supported && REQUEST_ENABLE_BT == RESULT_OK) {
             Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
             String deviceName = "HC-05";
-            String deviceAddress;
+
 
             if (pairedDevices.size() > 0) {
                 // There are paired devices. Get the name and address of each paired device.
@@ -51,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 //                    String deviceName = device.getName();
                     if (device.getName() == deviceName) {
                         deviceAddress = device.getAddress(); // MAC address
+                        blt_device =  device;
                         break;
                     }
                 }
@@ -58,7 +64,16 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "No Paired Bluetooth Devices Found.", Toast.LENGTH_LONG).show();
             }
 
+
+
         }
+
+        if (blt_device != null) {
+            ConnectThread mmConnectThread = new ConnectThread(blt_device);
+            mmConnectThread.run();
+
+        }
+
 
     }
 

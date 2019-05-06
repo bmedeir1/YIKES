@@ -33,6 +33,7 @@ public class ConnectThread extends Thread {
     }
 
     public void run() {
+        Log.i(TAG, "Runing run() of Connect Thread");
         // Cancel discovery because it otherwise slows down the connection.
         mBluetoothAdapter.cancelDiscovery();
 
@@ -52,7 +53,8 @@ public class ConnectThread extends Thread {
 
         // The connection attempt succeeded. Perform work associated with
         // the connection in a separate thread.
-        manageMyConnectedSocket(mmSocket);
+        MyBluetoothService mmMyBluetoothService = new MyBluetoothService();
+        mmMyBluetoothService.manageMyConnectedSocket(mmSocket);
     }
 
     // Closes the client socket and causes the thread to finish.
@@ -64,7 +66,5 @@ public class ConnectThread extends Thread {
         }
     }
 
-    public void manageMyConnectedSocket(BluetoothSocket mmSocket){
 
-    }
 }
