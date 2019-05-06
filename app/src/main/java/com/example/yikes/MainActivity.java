@@ -3,6 +3,9 @@ package com.example.yikes;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -11,6 +14,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Context;
+import android.app.Application;
 
 
 import com.example.yikes.Bluetooth.MyBluetoothService;
@@ -26,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     BluetoothDevice mmBluetoothDevice = null;
     private static final String TAG = "MY_APP_DEBUG_TAG";
 
+    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+    Ringtone r;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         connect_status = findViewById(R.id.connect_status);
         value = findViewById(R.id.value);
         connect_switch = findViewById(R.id.swtich);
+
+        r = RingtoneManager.getRingtone(getApplicationContext(), notification);
 
         Boolean blt_supported = true;
 
@@ -101,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     connect_status.setText("Connected");
                     if (msg.what == 0) {
                         connect_switch.setText("ON");
+                        r.play();
                     }
 
 
