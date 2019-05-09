@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">YIKES</string>
+    <string name="call_id">Mom</string>
+    <string name="call_header">Call From:</string>
+    <string name="call_answer">Answer</string>
+    <string name="call_decline">Decline</string>
 </resources>

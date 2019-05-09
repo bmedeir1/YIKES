@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/callActivityBack"
+    tools:context=".CallActivity">
+    android:
+
+    <Button
+        android:id="@+id/callAnswer"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="180dp"
+        android:background="@color/callAnswer"
+        android:text="@string/call_answer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/callDecline"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/callDecline"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="180dp"
+        android:background="@color/callDecline"
+        android:text="@string/call_decline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/callAnswer" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="290dp"
+        android:background="@color/callHeader"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/callAnswer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.197">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="94dp"
+            android:text="@string/call_header"
+            android:textAlignment="textStart"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/call_id"
+            android:textAlignment="textStart"
+            android:textSize="50sp"
+
+            />
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

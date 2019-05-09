@@ -10,6 +10,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.example.yikes.YIKES;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -19,9 +21,11 @@ import static android.content.ContentValues.TAG;
 
 
 public class MyBluetoothService {
+
     private static final String TAG = "MY_APP_DEBUG_TAG";
     private Handler handler; // handler that gets info from Bluetooth service
     private BluetoothDevice mmBluetoothDevice;
+    public boolean flag = false;
 
     // Defines several constants used when transmitting messages between the
     // service and the UI.
@@ -32,6 +36,7 @@ public class MyBluetoothService {
         this.handler = handler;
         ConnectThread mmConnectThread = new ConnectThread(this.mmBluetoothDevice);
         mmConnectThread.start();
+        this.flag = false;
     }
 
 
@@ -115,6 +120,7 @@ public class MyBluetoothService {
         private byte[] mmBuffer; // mmBuffer store for the stream
 
         public ConnectedThread(BluetoothSocket socket) {
+            flag = false;
             Log.d(TAG, "ConnectedThread constructor");
             mmSocket = socket;
             InputStream tmpIn = null;
@@ -148,10 +154,21 @@ public class MyBluetoothService {
                     // Read from the InputStream.
                     numBytes = mmInStream.read(mmBuffer);
                     // Send the obtained bytes to the UI activity.
-                   Message readMsg = handler.obtainMessage(
-                            MessageConstants.MESSAGE_READ, numBytes, -1,
-                            mmBuffer);
-                    readMsg.sendToTarget();
+//                    if (!flag) {
+                        Message readMsg = handler.obtainMessage(
+                                MessageConstants.MESSAGE_READ, numBytes, -1,
+                                mmBuffer);
+                        readMsg.sendToTarget();
+                        if (readMsg.toString().length() > 0) {
+                            flag = true;
+                        }
+//                        try {
+//                            wait(5000);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+
                 } catch (IOException e) {
                     Log.d(TAG, "Input stream was disconnected", e);
                     break;

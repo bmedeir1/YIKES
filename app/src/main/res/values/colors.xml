@@ -5,4 +5,8 @@
     <color name="colorAccent">#673AB7</color>
     <color name="colorBackground">#03A9F4</color>
     <color name="colorText">#FFFFFF</color>
+    <color name="callDecline">#EC0F0F</color>
+    <color name="callAnswer">#4CAF50</color>
+    <color name="callActivityBack">#7E7E7E</color>
+    <color name="callHeader">#353535</color>
 </resources>
