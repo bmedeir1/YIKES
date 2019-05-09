@@ -1,6 +1,6 @@
 # YIKES
 
-This App recieves a bluetooth signal from an HC-05 module and plays a ringtone in response. It follows the Android studio Bluetooth overview docs on how to use the bluetooth api. 
+This Android application recieves a bluetooth signal from an HC-05 module and in response, opens a new activity and plays a ringtone. It follows the Android studio Bluetooth overview docs on how to use the bluetooth api. 
 
 https://developer.android.com/guide/topics/connectivity/bluetooth 
 
