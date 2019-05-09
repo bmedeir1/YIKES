@@ -1,0 +1,35 @@
+// Arduino Program used for Matsci Lab II final project - called Yikes
+
+//Made for Arduino UNO
+
+//to run, copy into Arduion cc IDE and compile and upload to Arduino
+
+#include <SoftwareSerial.h>
+
+//int LED = 13;     // Most Arduino boards have an onboard LED on pin 13
+SoftwareSerial Genotronex(10,11); // bluetooth module;
+int BluetoothData;
+
+
+void setup()  // Called only once per startup
+{
+     // Setup the serial port at 9600 bps. This is the BLE Shield default baud rate.
+//  pinMode(LED, OUTPUT);     // Set pin as an output
+//  digitalWrite(LED, LOW);
+//  Genotronex.write('1'); // Turn on LED (ie set to HIGH voltage)
+  pinMode(13,OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+//  Genotronex.write('1');
+  delay(2000);
+  int sensorValue = analogRead(A0);
+  // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
+  float voltage = sensorValue * (5.0 / 1023.0);
+  if (voltage == 0) {
+    Genotronex.begin(9600);
+    Genotronex.write('0');
+    delay(10000);
+  }
+}
