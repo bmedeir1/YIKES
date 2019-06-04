@@ -6,3 +6,4 @@ This Android application was created for a final Matsci Lab II project at JHU. I
 
 A ready to install APK is available [here](https://github.com/bmedeir1/YIKES/tree/master/app/build/outputs/apk/debug).
 
+Code for the Arduino is in a text file under the main directory and linked [here] (https://github.com/bmedeir1/YIKES/blob/master/app/src/main/java/com/example/yikes/CodeForArduino). 
